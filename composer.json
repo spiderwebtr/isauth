@@ -1,0 +1,26 @@
+{
+    "name": "spiderwebtr/isauth",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Emre Dipi",
+            "email": "mail@emredipi.com",
+            "homepage": "https://emredipi.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "spiderwebtr\\isauth\\isAuthServiceProvider"
+            ]
+        }
+    },
+    "require": {},
+    "description": "",
+    "autoload": {
+        "psr-4": {
+            "spiderwebtr\\isauth\\": "src"
+        }
+    }
+}
