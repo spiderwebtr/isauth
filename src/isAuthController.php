@@ -10,9 +10,7 @@ class isAuthController extends Controller
 
     function isAuth(){
         return response()->json(
-            \Auth::check()?
-                ["logged"=>true, "csrf"=>(csrf_token())]:
-                ["logged"=>false]
+            ["logged"=>\Auth::check(), "csrf"=>(csrf_token())]
         );
     }
 

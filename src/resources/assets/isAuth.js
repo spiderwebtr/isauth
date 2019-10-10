@@ -12,8 +12,8 @@ let posterror=()=>{
 };
 function isAuth(callback){
     $.get("/isAuth").done(function (data) {
+        if(data.csrf!==csrf) update_csrf(data.csrf);
         if (data.logged) {
-            update_csrf(data.csrf);
             if (callback) callback();
         }else{
             askPassword(callback);
