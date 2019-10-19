@@ -12,6 +12,7 @@ class isAuthController extends Controller
         return response()->json(
             ["logged"=>\Auth::check(), "csrf"=>(csrf_token())]
         );
+         alert("isAuthworking");
     }
 
     function ajaxlogin(Request $request){
