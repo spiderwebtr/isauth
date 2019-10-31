@@ -1,4 +1,4 @@
-let isAuth = function(user, newOptions) {
+let isAuth = function(user, newOptions = {}) {
     let options = {
         texts: {
             placeholder:"Type your password",
