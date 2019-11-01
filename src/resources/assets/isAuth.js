@@ -11,12 +11,6 @@ let isAuth = function(user, newOptions = {}) {
 
     $.extend(options, newOptions);
 
-    let texts={
-        placeholder:"Type your password",
-        wrong:"Wrong Password",
-        error:"Error",
-        button:"Login"
-    };
     let posterror=()=>{
         swal({
             title:options.texts.error,
