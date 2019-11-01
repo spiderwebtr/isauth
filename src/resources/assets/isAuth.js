@@ -23,7 +23,7 @@ let isAuth = function(user, newOptions = {}) {
             icon:"error"
         });
     };
-    function isAuth(callback){
+    function isAuthenticated(callback){
         $.get("/isAuth").done(function (data) {
             if(data.csrf!==csrf) update_csrf(data.csrf);
             if (data.logged) {
@@ -89,7 +89,7 @@ let isAuth = function(user, newOptions = {}) {
     $("form").submit(function (event) {
         let _this=this;
         event.preventDefault();
-        isAuth(function () {
+        isAuthenticated(function () {
             $(_this).unbind('submit').submit();
         });
     });
