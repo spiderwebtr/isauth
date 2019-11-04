@@ -39,6 +39,7 @@ Add this code to the footer in your blade. `user` object provides information in
         email:"{{$user->email}}",
         photo:"{{$user->getFirstMediaUrl("image","thumb")}}" //edit this up to your system or just remove this line.
     };
+    isAuth(user);
 </script>
 <style>
     .swal-icon--custom>img{
@@ -48,11 +49,37 @@ Add this code to the footer in your blade. `user` object provides information in
 </style>
 <script src="/assets/SpiderWebtr/isAuth/isAuth.js"></script>
 ```
+If you require a field other than email address to authenticate this can be 
+passed in an optional settings object as the second parameter. This settings 
+object can also be used to override the default text used for labels and user 
+feedback messages.
+
+The field authenticated against will use the default email address or the field 
+returned by LoginController->username().
+
+```html
+<script>
+    let user = {
+        name: "{{ Auth::user()->name }}",
+        username: "{{ Auth::user()->username }}"
+    };
+    isAuth(user, {
+        username: "username",
+        texts: {
+            placeholder: "Enter your password",
+            wrong: "Incorrect password provided.",
+            error: "An error occurred.",
+            button: "Log In"
+        }
+    });
+</script>
+```
 
 ## Extras
 
 ### Translate
-In `isAuth.js` file there is  `texts` object which provides texts to package. You can modify them to translate.
+In `isAuth.js` file there is  `texts` object which provides texts to package. You can modify them to translate. 
+Simply pass them in the settings object.
 
 ### isAuth Function
 `isAuth` function takes a callback parameter so you can call `isAuth` in your code.
