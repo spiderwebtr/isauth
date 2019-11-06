@@ -16,9 +16,10 @@ class isAuthController extends Controller
     }
 
     function ajaxlogin(Request $request){
-        $username = (new LoginController())->username();
-
-        $success=\Auth::attempt([$username=>$request->$username,"password"=>$request->password]);
+        $success=\Auth::attempt([
+            $request->loginField=>$request->username,
+            "password"=>$request->password
+        ]);
         return $success?$this->isAuth():"{logged:false}";
     }
 }

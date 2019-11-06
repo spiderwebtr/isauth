@@ -5,7 +5,7 @@ This package provides control to check if user session dead before submit forms.
 Require this package with composer.
 
 ```shell
-composer require spiderwebtr/isauth
+composer require spiderwebtr/isauth:dev-master
 ```
 
 ### Laravel 5.5+
@@ -13,6 +13,12 @@ If you don't use auto-discovery, add the ServiceProvider to the providers array 
 
 ```php
 spiderwebtr\isauth\isAuthServiceProvider::class,
+```
+### Create assets
+Run the command to create the js file.
+
+```bash
+php artisan vendor:publish --tag=public --force
 ```
 
 ### Include JQuery and Sweet Alert
@@ -23,23 +29,17 @@ You can download the js files or just use cdn.
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 ```
 
-### Create assets
-Run the command to copy js file.
-
-```bash
-php artisan vendor:publish --tag=public --force
-```
-
 ### Last Step
 Add this code to the footer in your blade. `user` object provides information in login modal.
 ```html
+<script src="/assets/SpiderWebtr/isAuth/isAuth.js"></script>
 <script>
     let user={
         name:"{{$user->name}}",
         email:"{{$user->email}}",
         photo:"{{$user->getFirstMediaUrl("image","thumb")}}" //edit this up to your system or just remove this line.
     };
-    isAuth(user);
+    let auth=defineIsAuth(user);
 </script>
 <style>
     .swal-icon--custom>img{
@@ -47,52 +47,57 @@ Add this code to the footer in your blade. `user` object provides information in
         border-radius: 50%;
     }
 </style>
-<script src="/assets/SpiderWebtr/isAuth/isAuth.js"></script>
 ```
+
+
+## Extras
+
+### Translation and Customization
 If you require a field other than email address to authenticate this can be 
 passed in an optional settings object as the second parameter. This settings 
 object can also be used to override the default text used for labels and user 
 feedback messages.
 
-The field authenticated against will use the default email address or the field 
-returned by LoginController->username().
+The field authenticated against will use the default `email`. If your project uses username to login, change it with `username`.
 
 ```html
 <script>
-    let user = {
-        name: "{{ Auth::user()->name }}",
-        username: "{{ Auth::user()->username }}"
+    let user={
+        name:"{{$user->name}}",
+        username:"{{$user->username}}",
+        photo:"{{$user->getFirstMediaUrl("image","thumb")}}" //edit this up to your system or just remove this line.
     };
-    isAuth(user, {
-        username: "username",
-        texts: {
-            placeholder: "Enter your password",
-            wrong: "Incorrect password provided.",
-            error: "An error occurred.",
-            button: "Log In"
-        }
+    let auth=defineIsAuth(user,{
+        texts:{ //change strings to your language
+            placeholder:"Type Your Password",
+            wrong:"Wrong Password",
+            error:"Error",
+            button:"Login"
+        },
+        loginField:"username" //your laravel login field
     });
 </script>
 ```
 
-## Extras
-
-### Translate
-In `isAuth.js` file there is  `texts` object which provides texts to package. You can modify them to translate. 
-Simply pass them in the settings object.
 
 ### isAuth Function
-`isAuth` function takes a callback parameter so you can call `isAuth` in your code.
+`isAuth` function takes a callback parameter so in your code you can call `isAuth` from the object you defined.
 
 ```javascript
-isAuth(function(){
+auth.isAuth(function(){
     //do something 
 });
 ```
 
 Login modal will reveal if the session is dead. When you re-login, your code will work with callback.
 
+### Contributors
+* [@emredipi](https://github.com/emredipi)
+* [@jasonhoule]( https://github.com/jasonhoule )
+* You can be here :)
 
+### Feedback
+ If you give me some feedback I will be happy. You can show your satisfaction with star. :star:
 
 
 
