@@ -1,14 +1,19 @@
 # isAuth
+![alt text](https://img.shields.io/badge/Stable-1.1-blue "Stable")
+![alt text](https://img.shields.io/badge/Unstable-dev--master-orange "Unstable")
+![alt text](https://img.shields.io/badge/License-MIT-yellow "License")
+
+
 This package provides control to check if user session dead before submit forms. If the session is dead, a modal will reveal and ask password to re-login.
 
 ## Installation
 Require this package with composer.
 
 ```shell
-composer require spiderwebtr/isauth:dev-master
+composer require spiderwebtr/isauth
 ```
 
-### Laravel 5.5+
+### Laravel < 5.5
 If you don't use auto-discovery, add the ServiceProvider to the providers array in config/app.php
 
 ```php
@@ -97,7 +102,7 @@ Login modal will reveal if the session is dead. When you re-login, your code wil
 * You can be here :)
 
 ### Feedback
- If you give me some feedback I will be happy. You can show your satisfaction with star. :star:
+If you give me some feedback I will be happy. You can show your satisfaction with star. :star:
 
-
-
+### Update from version dev-master to v1.1
+If you downloaded the package in development version (dev-master), please remove it apply Installation Guide from this readme file (require,Create assets,Last Step).
