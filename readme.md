@@ -3,8 +3,9 @@
 ![alt text](https://img.shields.io/badge/Unstable-dev--master-orange "Unstable")
 ![alt text](https://img.shields.io/badge/License-MIT-yellow "License")
 
-
 This package provides control to check if user session dead before submit forms. If the session is dead, a modal will reveal and ask password to re-login.
+
+![](image.jpg)
 
 ## Installation
 Require this package with composer.
