@@ -16,6 +16,7 @@ class isAuthServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__.'/routes/routes.php');
         $this->publishes([
             __DIR__.'/resources/assets/' => public_path('assets/SpiderWebtr/isAuth/'),
+            __DIR__.'/config/' => config_path('/'),
         ], 'public');
     }
 
