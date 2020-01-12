@@ -2,7 +2,7 @@
 return [
     "middleware"=>['web'], //for laravel routes (web,api...)
     "options"=>[
-        "loginField"=>"email", //set this username if you login with
+        "loginField"=>"email", //If your project uses username to login, change it with "username".
         "texts"=>[ //translate
             "placeholder"=>"Type Your Password",
             "wrong"=>"Wrong Password",

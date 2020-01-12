@@ -1,5 +1,5 @@
 # isAuth
-![alt text](https://img.shields.io/badge/Stable-1.1-blue "Stable")
+![alt text](https://img.shields.io/badge/Stable-1.2-blue "Stable")
 ![alt text](https://img.shields.io/badge/Unstable-dev--master-orange "Unstable")
 ![alt text](https://img.shields.io/badge/License-MIT-yellow "License")
 
@@ -7,103 +7,77 @@ This package provides control to check if user session dead before submit forms.
 
 ![](image.jpg)
 
-## Installation
+## 1- Installation
 Require this package with composer.
 
 ```shell
 composer require spiderwebtr/isauth
 ```
 
-### Laravel < 5.5
+### 1.2- Laravel < 5.5
 If you don't use auto-discovery, add the ServiceProvider to the providers array in config/app.php
 
 ```php
 spiderwebtr\isauth\isAuthServiceProvider::class,
 ```
-### Create assets
-Run the command to create the js file.
+
+### 2- Create assets and config file
+Run the command to create the js and config files.
 
 ```bash
-php artisan vendor:publish --tag=public --force
+php artisan vendor:publish --tag=public --tag=config --force
 ```
 
-### Include JQuery and Sweet Alert
-You can download the js files or just use cdn.
+### 3- Edit config/isAuth.php
+Under config folder, you'll see [`isAuth`](src/config/isAuth.php) config file. Edit the fields for customizations.
+
+```php
+return [
+    "middleware"=>['web'], //for laravel routes (web,api...)
+    "options"=>[
+        "loginField"=>"email", //If your project uses username to login, change it with "username".
+        "texts"=>[ //translate
+            "placeholder"=>"Type Your Password",
+            "wrong"=>"Wrong Password",
+            "error"=>"Error",
+            "button"=>"Login"
+        ]
+    ],
+];
+```
+
+### 4- Include JQuery,Sweet Alert and @isAuthAssets in your footer
+You can download the js files or just use cdn. `@isAuthAssets` will call isAuth.js and define auth object with your config.
 
 ```html
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+@isAuthAssets([
+    "user"=>auth()->user(),
+    "photo"=>$user->getFirstMediaUrl("image","thumb") //pass url of your user's photo to "photo" if you use one
+])
 ```
-
-### Last Step
-Add this code to the footer in your blade. `user` object provides information in login modal.
-```html
-<script src="/assets/SpiderWebtr/isAuth/isAuth.js"></script>
-<script>
-    let user={
-        name:"{{$user->name}}",
-        email:"{{$user->email}}",
-        photo:"{{$user->getFirstMediaUrl("image","thumb")}}" //edit this up to your system or just remove this line.
-    };
-    let auth=defineIsAuth(user);
-</script>
-<style>
-    .swal-icon--custom>img{
-        max-height: 250px;
-        border-radius: 50%;
-    }
-</style>
-```
-
 
 ## Extras
-
-### Translation and Customization
-If you require a field other than email address to authenticate this can be 
-passed in an optional settings object as the second parameter. This settings 
-object can also be used to override the default text used for labels and user 
-feedback messages.
-
-The field authenticated against will use the default `email`. If your project uses username to login, change it with `username`.
-
-```html
-<script>
-    let user={
-        name:"{{$user->name}}",
-        username:"{{$user->username}}",
-        photo:"{{$user->getFirstMediaUrl("image","thumb")}}" //edit this up to your system or just remove this line.
-    };
-    let auth=defineIsAuth(user,{
-        texts:{ //change strings to your language
-            placeholder:"Type Your Password",
-            wrong:"Wrong Password",
-            error:"Error",
-            button:"Login"
-        },
-        loginField:"username" //your laravel login field
-    });
-</script>
-```
-
-
-### isAuth Function
-`isAuth` function takes a callback parameter so in your code you can call `isAuth` from the object you defined.
+### :fire: isAuth function
+`isAuth` function takes a callback parameter so in your code you can call `isAuth` to check the session before doing your js stuff.
 
 ```javascript
 auth.isAuth(function(){
     //do something 
 });
 ```
-
 Login modal will reveal if the session is dead. When you re-login, your code will work with callback.
 
 ### Contributors
 * [@emredipi](https://github.com/emredipi)
-* [@jasonhoule]( https://github.com/jasonhoule )
+* [@jasonhoule](https://github.com/jasonhoule)
 * You can be here :)
 
 ### Feedback
 If you give me some feedback I will be happy. You can show your satisfaction with star. :star:
 
-### Update from version dev-master to v1.1
-If you downloaded the package in development version (dev-master), please remove it apply Installation Guide from this readme file (require,Create assets,Last Step).
+### Update Guide
+- **v1.1** - If you downloaded the package in development version (dev-master), please remove it apply Installation Guide from this readme file (require,Create assets,Last Step).
+- **v1.2** - Delete the js codes in footer, then start from step 2
+
