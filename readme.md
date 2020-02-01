@@ -25,7 +25,7 @@ spiderwebtr\isauth\isAuthServiceProvider::class,
 Run the command to create the js and config files.
 
 ```bash
-php artisan vendor:publish --tag=public --tag=config --force
+php artisan vendor:publish --provider="spiderwebtr\isauth\isAuthServiceProvider" --force --tag="public" --tag="config"
 ```
 
 ### 3- Edit config/isAuth.php
