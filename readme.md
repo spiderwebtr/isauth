@@ -5,10 +5,13 @@
 ![alt text](https://img.shields.io/packagist/l/spiderwebtr/isauth "License")
 ![alt text](https://img.shields.io/github/followers/emredipi?style=social "Github")
 
-
 This package provides control to check if user session dead before submit forms. If the session is dead, a modal will reveal and ask password to re-login.
 
 ![](image.jpg)
+
+### [Demo](http://isauth.herokuapp.com/)
+### [Demo Source](https://github.com/spiderwebtr/isAuthDemo)
+
 
 ## 1- Installation
 Require this package with composer.
