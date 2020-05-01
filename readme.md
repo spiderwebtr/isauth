@@ -57,7 +57,7 @@ You can download the js files or just use cdn. `@isAuthAssets` will call isAuth.
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 @isAuthAssets([
     "user"=>auth()->user(),
-    "photo"=>$user->getFirstMediaUrl("image","thumb") //pass url of your user's photo to "photo" if you use one
+    "photo"=>$user->avatar //(not required) if you use avatar in your user system, pass the url of your user's avatar to "photo" key, if you don't use avatar, you can remove the key in array
 ])
 ```
 
