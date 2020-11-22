@@ -1,6 +1,7 @@
 <?php
 
 namespace spiderwebtr\isauth;
+
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
@@ -32,5 +33,4 @@ class isAuthServiceProvider extends ServiceProvider
     public function register()
     {
     }
-
 }
