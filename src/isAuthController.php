@@ -2,24 +2,25 @@
 
 namespace spiderwebtr\isauth;
 
-use App\Http\Controllers\Auth\LoginController;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class isAuthController extends Controller
 {
-
-    function isAuth(){
+    public function isAuth()
+    {
         return response()->json(
-            ["logged"=>\Auth::check(), "csrf"=>(csrf_token())]
+            ['logged'=>\Auth::check(), 'csrf'=>(csrf_token())]
         );
     }
 
-    function ajaxlogin(Request $request){
-        $success=\Auth::attempt([
-            $request->loginField=>$request->username,
-            "password"=>$request->password
+    public function ajaxlogin(Request $request)
+    {
+        $success = \Auth::attempt([
+            $request->loginField=> $request->username,
+            'password'          => $request->password,
         ]);
-        return $success?$this->isAuth():"{logged:false}";
+
+        return $success ? $this->isAuth() : '{logged:false}';
     }
 }
